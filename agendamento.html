@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consultas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Pangolin&family=Patrick+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('dermaskin\ -\ fundo(4).png');
+            background-size: cover;
+            text-align: center;
+            font-family: "Pangolin", cursive;
+        }
+
+        #container {
+            background-color: #ce9f9f00;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            border: 2px solid #d12121;
+        }
+
+        h1 {
+            color: rgb(213, 82, 82);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: "Quicksand", sans-serif;
+        }
+
+        select{
+            background-color: #f97c823c;
+        }
+
+        button {
+            background-color: #f97c83;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: "Pangolin", cursive;
+            margin-top: 2%;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #d4373f;
+            transition: 1s;
+        }
+
+        #message {
+            display: none;
+            color: #d12121;
+            margin-top: 20px;
+            font-family: "Quicksand", sans-serif;
+        }
+
+        /* Carrossel */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            width: 100%;
+            height: 200px;
+            margin-top: 20px;
+        }
+
+        .appointment {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 300px;
+            margin-right: 10px;
+            padding: 1px 35px;
+            background-color: #f97c823c;
+            border-radius: 10px;
+            height: 150%;
+            text-align: left;
+        }
+
+        p{
+            color: rgb(222, 114, 114);
+            font-family: "Quicksand", sans-serif;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div id="container">
+        <h1>Agendamento de Consultas</h1>
+        <form id="appointmentForm">
+            <input type="text" id="name" placeholder="Nome"required><br>
+
+            <input type="text" id="cpf" placeholder="CPF" required><br>
+
+            <input type="number" id="age" placeholder="Idade" required><br>
+
+            <input id="description" placeholder="Descreva o motivo de sua consulta"required></input><br>
+
+            <select id="doctor" required>
+                <option value="">Selecione um doutor</option>
+                <option value="Dr. Ryan Ferreira">Dr. Ryan Ferreira</option>
+                <option value="Dra. Bianca Beatriz">Dra. Bianca Beatriz</option>
+                <option value="Dra. Júlia Bento">Dra. Júlia Bento</option>
+                <option value="Dra. Carolina Ladeia">Dra. Carolina Ladeia</option>
+                <option value="Dr. Murilo Cardoso">Dr. Murilo Cardoso</option>
+            </select><br>
+
+            <input type="date" id="date" required><br>
+
+            <input type="time" id="time" required><br>
+
+            <button type="submit">Agendar</button>
+        </form>
+        <a href="inicial.html"><button type="submit">Voltar</button></a>
+        <div class="carousel" id="carousel">
+            <!-- Consultas serão adicionadas aqui -->
+        </div>
+        <div id="message"></div>
+    </div>
+
+
+
+    <script>
+        // Função para adicionar uma consulta ao carrossel
+        function addAppointment(appointment) {
+            const carousel = document.getElementById('carousel');
+            const appointmentDiv = document.createElement('div');
+            appointmentDiv.classList.add('appointment');
+            appointmentDiv.innerHTML = `
+                <p><strong>Nome:</strong> ${appointment.name}</p>
+                <p><strong>CPF:</strong> ${appointment.cpf}</p>
+                <p><strong>Idade:</strong> ${appointment.age}</p>
+                <p><strong>Descrição:</strong> ${appointment.description}</p>
+                <p><strong>Doutor:</strong> ${appointment.doctor}</p>
+                <p><strong>Data:</strong> ${appointment.date}</p>
+                <p><strong>Horário:</strong> ${appointment.time}</p>
+            `;
+            carousel.appendChild(appointmentDiv);
+        }
+
+        // Event listener para o formulário de agendamento
+        document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const cpf = document.getElementById("cpf").value;
+            const age = document.getElementById("age").value;
+            const description = document.getElementById("description").value;
+            const doctor = document.getElementById("doctor").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+
+            const appointment = { name, cpf, age, description, doctor, date, time };
+
+            addAppointment(appointment);
+            document.getElementById("appointmentForm").reset();
+        });
+    </script>
+</body>
+</html>

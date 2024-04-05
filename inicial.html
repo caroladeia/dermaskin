@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermaSkin</title>
+</head>
+
+<body>
+    <video id="fundo" autoplay loop="false">
+        <source src="dermaskin - fundo.mp4" type="video/mp4">
+    </video>
+
+    <div class="divbotao">
+        <a href="agendamento.html" class="botao">Agendar</a>
+    </div>
+</body>
+</html>
+
+<!-- ----------------------- estilos da tela inicial ---------------------------- -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Pangolin&family=Patrick+Hand&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    
+    #fundo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+    
+    .divbotao {
+        position: absolute;
+        bottom: 7%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 100%;
+    }
+    
+    .botao {
+        text-transform: uppercase;
+        font-family: "Pangolin", cursive;
+        display: inline-block;
+        padding: 15px 25px;
+        font-size: 30px;
+        background-color: #ff6f61;
+        color: #fff;
+        border-radius: 50px;
+        text-decoration: none;
+    }
+    
+    .botao:hover {
+        background-color: #d5493c;
+        transition: 1s;
+    }
+</style>
